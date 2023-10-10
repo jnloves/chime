@@ -81,53 +81,59 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   }
 
   return (
-    <div className="form-widget flex flex-col px-8 gap-4">
+    <div className="flex flex-col gap-4 w-full p-8 items-center">
       <Avatar
         uid={user.id}
         url={avatar_url}
-        size={150}
+        size={200}
         onUpload={(url) => {
         setAvatarUrl(url)
         updateProfile({ name, username, avatar_url: url })
         }}
       />
-      <div className='flex justify-between'>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session?.user.email} disabled />
-      </div>
-      <div className='flex justify-between'>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          id="fullName"
-          type="text"
-          value={name || ''}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className=' flex justify-between'>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+      <div className='w-full flex flex-col gap-2 text-sm'>
+        <div className='flex justify-between'>
+          <label htmlFor="email">Email</label>
+          <input id="email" type="text" className='brightness-50 opacity-50' value={session?.user.email} disabled />
+        </div>
+        <div className='flex justify-between'>
+          <label htmlFor="fullName">Full Name</label>
+          <input
+            className='w-1/2 border-b border-[rgba(1,1,1,0.1)] truncate'
+            id="fullName"
+            type="text"
+            value={name || ''}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className=' flex justify-between'>
+          <label htmlFor="username">Username</label>
+          <input
+            className='w-1/2 border-b border-[rgba(1,1,1,0.1)] truncate'
+            id="username"
+            type="text"
+            value={username || ''}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+
+        <div className='flex flex-col h-[25vh] relative'>
+          <button
+            className="button primary block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl w-fit self-end"
+            onClick={() => updateProfile({ name, username, avatar_url })}
+            disabled={loading}
+          >
+            {loading ? 'Loading ...' : 'Update Profile'}
+          </button>
+          <form action="/auth/signout" method="post" className='absolute bottom-0 right-0'>
+            <button className="button block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl" type="submit">
+              Sign out
+            </button>
+          </form>
+        </div>
+
       </div>
 
-      <div className='flex justify-between'>
-        <button
-          className="button primary block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl"
-          onClick={() => updateProfile({ name, username, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update Profile'}
-        </button>
-        <form action="/auth/signout" method="post">
-          <button className="button block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl" type="submit">
-            Sign out
-          </button>
-        </form>
-      </div>
     </div>
   )
 }

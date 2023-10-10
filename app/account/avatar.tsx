@@ -89,8 +89,11 @@ export default function Avatar({
   }
 
   return (
-    <div className='flex flex-col w-full items-center'>
-      {avatarUrl ? (
+    <div 
+      className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative'
+      style={{backgroundImage: `url(${!!avatarUrl ? avatarUrl : "https://picsum.photos/1000"})`}}
+    >
+      {/*avatarUrl ? (
         <Image
           width={size}
           height={size}
@@ -107,8 +110,8 @@ export default function Avatar({
           alt="Avatar"
           className="avatar image rounded-full"
           style={{ height: size, width: size }}
-        />      )}
-      <div style={{ width: size }} className='text-center'>
+      />      )*/}
+      <div className='text-center !w-full text-white font-semibold h-1/4 bg-[rgba(1,1,1,0.5)] py-2 absolute -bottom-2'>
         <label className="button primary block cursor-pointer" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Edit Image'}
         </label>
