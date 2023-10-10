@@ -5,6 +5,9 @@ import { experimental_useOptimistic as useOptimistic } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import dayjs from 'dayjs';
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
     const [optimisticTweets, addOptimisticTweet ] = useOptimistic<TweetWithAuthor[], TweetWithAuthor>(
@@ -13,6 +16,7 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
             const newOptimisticTweets = [...currentOptimisticTweets]
             const index = newOptimisticTweets.findIndex(tweet => tweet.id === newTweet.id)
             newOptimisticTweets[index] = newTweet
+
             return newOptimisticTweets;
         }
     )
@@ -56,13 +60,8 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
         //console.log(data)
         return data.publicUrl;
       }
-    
 
-
-
-
-
-  return optimisticTweets.map((tweet) => (
+      const allTweets = optimisticTweets.map((tweet) => (
         <div key={tweet.id} className='flex w-full justify-start py-2 gap-4'>
           <div className='flex-shrink-0'>
             { !!tweet.author.avatar_url ? (
@@ -80,16 +79,31 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
             }
           </div>
 
-          <div>
-            <p>
-              {tweet.author.name} {tweet.author.username} 
-            </p>
-            <p>{tweet.title}</p>
-            <Likes tweet={tweet}  addOptimisticTweet={addOptimisticTweet} />
+          <div className='w-full flex flex-col gap-2'>
+            <div className='flex gap-2'>
+              <p className='font-semibold'>{tweet.author.name}</p> 
+              <p className='text-gray-500'>@{tweet.author.username}</p>
+              <p>·</p>
+              <p className='text-gray-500'>{dayjs(tweet.created_at).fromNow()}</p>
+            </div>
+            <div className=''>
+              {tweet.title}
+            </div>
+
+            <div className='w-full flex'>
+              <Likes tweet={tweet}  addOptimisticTweet={addOptimisticTweet} />
+            </div>
           </div>
 
         </div>
   ))
+    
+
+  return (
+    <div className='flex flex-col divide-y divide-[rgba(1,1,1,0.1)] w-full'>
+        {allTweets.reverse()}
+    </div>
+  )
 }
 
 export default Tweets

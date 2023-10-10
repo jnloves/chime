@@ -22,7 +22,7 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
         if (error) {
             throw error;
         } else {
-            redirect("/");
+            redirect("/account");
         }
     }
 

@@ -1,12 +1,16 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, {useState} from 'react'
+import { AiFillHeart } from 'react-icons/ai';
+
 
 const Likes =  ({ tweet, addOptimisticTweet } : {tweet:  TweetWithAuthor; addOptimisticTweet: (newTweet: TweetWithAuthor) => (void)}) => {
+    const [ liked, setLiked ] = useState(false);
     const router = useRouter();
     //console.log(tweet)
     const handleLikes = async () => {
+        setLiked(!liked);
         const supabase = createClientComponentClient<Database>()
         const { data: {user}} = await supabase.auth.getUser();
         if (user) {
@@ -29,7 +33,8 @@ const Likes =  ({ tweet, addOptimisticTweet } : {tweet:  TweetWithAuthor; addOpt
         }
     }
   return (
-    <button onClick={handleLikes}>{tweet.likes} likes</button>
+
+    <button onClick={handleLikes} className='flex transition-all duration-150'>{tweet.likes} <AiFillHeart color={liked ? "red" : "grey"} size={22} /></button>
   )
 }
 
