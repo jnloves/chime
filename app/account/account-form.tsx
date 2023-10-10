@@ -66,10 +66,10 @@ export default function AccountForm({ session }: { session: Session | null  }) {
 
       let { error } = await supabase.from('profiles').upsert({
         id: user?.id,
-        name: name,
+        name,
         username,
         avatar_url,
-        updated_at: new Date().toISOString(),
+        //updated_at: new Date().toISOString(),
       })
       if (error) throw error
       alert('Profile updated!')
