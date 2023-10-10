@@ -81,7 +81,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full p-8 items-center">
+    <div className="flex flex-col gap-4 w-full h-[85vh] p-8 items-center">
       <Avatar
         uid={user.id}
         url={avatar_url}
@@ -91,7 +91,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
         updateProfile({ name, username, avatar_url: url })
         }}
       />
-      <div className='w-full flex flex-col gap-2 text-sm'>
+      <div className='w-full flex flex-col gap-2 text-sm h-full'>
         <div className='flex justify-between'>
           <label htmlFor="email">Email</label>
           <input id="email" type="text" className='brightness-50 opacity-50' value={session?.user.email} disabled />
@@ -117,7 +117,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
           />
         </div>
 
-        <div className='flex flex-col h-[25vh] relative'>
+        <div className='flex flex-col h-3/4 relative'>
           <button
             className="button primary block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl w-fit self-end"
             onClick={() => updateProfile({ name, username, avatar_url })}

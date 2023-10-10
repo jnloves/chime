@@ -90,7 +90,7 @@ export default function Avatar({
 
   return (
     <div 
-      className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative'
+      className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative flex-shrink-0'
       style={{backgroundImage: `url(${!!avatarUrl ? avatarUrl : "https://picsum.photos/1000"})`}}
     >
       {/*avatarUrl ? (

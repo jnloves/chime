@@ -1,6 +1,7 @@
 'use client'
 import { createClientComponentClient, Session } from '@supabase/auth-helpers-nextjs'
 import { sign } from 'crypto';
+import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import React from 'react'
 
@@ -75,8 +76,11 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
         </form>
     </div>
   ) : (
-        <button onClick={handleSignOut}>Logout</button>
+        <div className='w-[100vw] h-16 max-w-[35rem] border-b border-[rgba(1,1,1,0.1)] flex justify-end items-center px-4 fixed top-0 left-0 bg-transparent backdrop-blur-md'>
+            <Link href="/account" className=''>Profile</Link>
+        </div>
   )
 }
+{/*<button onClick={handleSignOut}>Logout</button>*/}
 
 export default AuthButtonClient

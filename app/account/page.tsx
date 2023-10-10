@@ -2,6 +2,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { Database } from '@/database.types'
 import AccountForm from './account-form'
+import { FaArrowLeft }  from "react-icons/fa";
+import Link from 'next/link';
 
 export default async function Account() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -10,5 +12,12 @@ export default async function Account() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  return <AccountForm session={session} />
+  return (
+    <>
+    <Link href="/" className='absolute top-4 left-4'>
+      <FaArrowLeft size={32} color="grey" />
+    </Link>
+    <AccountForm session={session} />
+    </>
+  ) 
 }

@@ -79,18 +79,18 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
             }
           </div>
 
-          <div className='w-full flex flex-col gap-2'>
-            <div className='flex gap-2'>
-              <p className='font-semibold'>{tweet.author.name}</p> 
-              <p className='text-gray-500'>@{tweet.author.username}</p>
-              <p>·</p>
-              <p className='text-gray-500'>{dayjs(tweet.created_at).fromNow()}</p>
+          <div className='w-full flex flex-col gap-2 text-sm'>
+            <div className='flex'>
+              <p className='font-semibold mr-2'>{tweet.author.name}</p> 
+              <p className='text-gray-400'>@{tweet.author.username}</p>
+              <p className='mx-1 text-gray-400'>·</p>
+              <p className='text-gray-400'>{dayjs(tweet.created_at).fromNow()}</p>
             </div>
             <div className=''>
               {tweet.title}
             </div>
 
-            <div className='w-full flex'>
+            <div className='w-full flex justify-end'>
               <Likes tweet={tweet}  addOptimisticTweet={addOptimisticTweet} />
             </div>
           </div>

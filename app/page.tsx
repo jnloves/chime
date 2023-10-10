@@ -25,8 +25,9 @@ export default async function Home() {
 
 
   return (
-    <div className='w-3/4 max-w-[35rem] flex flex-col items-center'>
+    <div className='w-full px-4 max-w-[35rem] flex flex-col items-center'>
       <AuthButtonServer />
+      <div className='h-16'></div>
       <NewTweet />
       <Tweets tweets={tweets} />
 
