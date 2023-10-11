@@ -1,6 +1,6 @@
+import { cookies } from 'next/headers'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import React from 'react'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import AuthButtonClient from '../auth-button-client'
 
