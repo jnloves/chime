@@ -4,6 +4,8 @@ import { sign } from 'crypto';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import React from 'react'
+import { FaGithub } from "react-icons/fa";
+import { BsArrowRightCircle, BsArrowRight } from "react-icons/bs"
 
 const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
     const supabase = createClientComponentClient<Database>();
@@ -60,19 +62,23 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
         router.refresh();
     }
   return !session ? (
-    <div className='flex flex-col'>
-        <button onClick={handleSignIn}>Login with Github</button>
+    <div className='flex flex-col p-8 gap-12'>
 
-        <form action={signInWithEmail} className='flex flex-col'>
-            <input name='email' type='email' className='border border-black' placeholder='email' required />
-            <input name='password' type='text' className='border border-black' placeholder='password' required />
-            <button>Login with Email</button>
+        <div className='flex bg-[rgba(1,1,1,0.1)] rounded-xl w-[15rem] py-2 justify-around'>
+            <button onClick={handleSignIn}>Login with Github</button>
+            <FaGithub size={32} color="black" />
+        </div>
+
+        <form action={signInWithEmail} className='flex flex-col gap-4'>
+            <input name='email' type='email' className='border-b border-black' placeholder='email' required />
+            <input name='password' type='text' className='border-b border-black' placeholder='password' required />
+            <button className='flex justify-around w-[15rem] py-2 bg-[rgba(1,1,1,0.1)] rounded-xl items-center'>Login with Email <BsArrowRight size={32} color="black" /></button>
         </form>
 
-        <form action={handleSignUp} className='flex flex-col'>
-            <input name='email' type='email' className='border border-black' placeholder='email' required />
-            <input name='password' type='text' className='border border-black' placeholder='password' required />
-            <button>Sign up with Email</button>
+        <form action={handleSignUp} className='flex flex-col gap-4'>
+            <input name='email' type='email' className='border-b border-black' placeholder='email' required />
+            <input name='password' type='text' className='border-b border-black' placeholder='password' required />
+            <button className='rounded-xl w-[15rem] bg-[rgba(1,1,1,0.1)] justify-around items-center py-2 flex'>Sign up with Email <BsArrowRight size={32} color="black" /></button>
         </form>
     </div>
   ) : (

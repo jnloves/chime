@@ -88,6 +88,8 @@ export default function Avatar({
     return Math.floor(Math.random() * 100);
   }
 
+  console.log(avatarUrl)
+
   return (
     <div 
       className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative flex-shrink-0'

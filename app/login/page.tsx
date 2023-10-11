@@ -14,7 +14,9 @@ const Login = async () => {
     }
 
   return (
-    <AuthButtonClient session={session} />
+    <div className='w-screen h-screen flex items-start justify-center'>
+      <AuthButtonClient session={session} />
+    </div>
   )
 }
 
