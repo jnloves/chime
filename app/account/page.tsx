@@ -4,6 +4,7 @@ import { Database } from '@/database.types'
 import AccountForm from './account-form'
 import { FaArrowLeft }  from "react-icons/fa";
 import Link from 'next/link';
+import ConfirmEmail from './ConfirmEmail';
 
 export default async function Account() {
   const supabase = createServerComponentClient<Database>({ cookies })
@@ -11,6 +12,8 @@ export default async function Account() {
   const {
     data: { session },
   } = await supabase.auth.getSession()
+
+  if (!session) return <ConfirmEmail />
 
   return (
     <>

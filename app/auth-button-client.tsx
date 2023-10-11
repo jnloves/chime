@@ -82,8 +82,10 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
         </form>
     </div>
   ) : (
-        <div className='w-[100vw] h-16 max-w-[35rem] border-b border-[rgba(1,1,1,0.1)] flex justify-end items-center px-4 fixed top-0 left-0 bg-transparent backdrop-blur-md'>
-            <Link href="/account" className=''>Profile</Link>
+        <div className='w-[100vw] h-16 border-b border-[rgba(1,1,1,0.1)] flex justify-center items-center px-4 fixed top-0 left-0 bg-transparent backdrop-blur-md'>
+            <div className='w-full max-w-[55rem] flex justify-end'>
+                <Link href="/account" className=''>Profile</Link>
+            </div>
         </div>
   )
 }

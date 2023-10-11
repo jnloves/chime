@@ -60,14 +60,16 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
         //console.log(data)
         return data.publicUrl;
       }
+{/*<Image src={downloadImage(tweet.author.avatar_url)} width={50} height={50} alt='profile pic' className='rounded-full w-12 h-12' />*/}
+{/*<Image src={"https://picsum.photos/200"} width={50} height={50} alt='profile pic' className='rounded-full w-12 h-12' />*/}
 
       const allTweets = optimisticTweets.map((tweet) => (
         <div key={tweet.id} className='flex w-full justify-start py-2 gap-4'>
           <div className='flex-shrink-0'>
             { !!tweet.author.avatar_url ? (
-                <Image src={downloadImage(tweet.author.avatar_url)} width={50} height={50} alt='profile pic' className='rounded-full w-12 h-12' />
+                <div className='rounded-full w-12 h-12 bg-center bg-cover' style={{ backgroundImage: `url(${downloadImage(tweet.author.avatar_url)})`}}></div>
             ) : (
-              <Image src={"https://picsum.photos/200"} width={50} height={50} alt='profile pic' className='rounded-full' />
+                <div className='rounded-full w-12 h-12 bg-center bg-cover' style={{ backgroundImage: `url(https://picsum.photos/200)`}}></div>
             )
 
               //(downloadImage(tweet.author.avatar_url))  ? (

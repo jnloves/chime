@@ -81,7 +81,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full h-[85vh] p-8 items-center">
+    <div className="flex flex-col gap-4 w-full h-[85vh] p-8 items-center max-w-[40rem]">
       <Avatar
         uid={user.id}
         url={avatar_url}
@@ -94,7 +94,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
       <div className='w-full flex flex-col gap-2 text-sm h-full'>
         <div className='flex justify-between'>
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" className='brightness-50 opacity-50' value={session?.user.email} disabled />
+          <input id="email" type="text" className='brightness-50 opacity-50 w-1/2' value={session?.user.email} disabled />
         </div>
         <div className='flex justify-between'>
           <label htmlFor="fullName">Full Name</label>
