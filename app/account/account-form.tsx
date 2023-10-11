@@ -13,7 +13,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   const [avatar_url, setAvatarUrl] = useState<string | null>(null)
   const user = session?.user! 
 
-  if (!user) return;
+  //if (!user) return;
   
   //ensure user is something
   //if (!user) return;
