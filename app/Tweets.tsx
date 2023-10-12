@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dayjs from 'dayjs';
 import relativeTime from "dayjs/plugin/relativeTime";
+import Link from 'next/link';
 dayjs.extend(relativeTime);
 
 const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
@@ -82,11 +83,11 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
           </div>
 
           <div className='w-full flex flex-col gap-2 text-sm'>
-            <div className='flex'>
-              <p className='font-semibold mr-2'>{tweet.author.name}</p> 
+            <div className='flex items-center'>
+              <Link href={`/user/${tweet.author.username}`} className='font-semibold mr-2 hover:underline'>{tweet.author.name}</Link> 
               <p className='text-gray-400'>@{tweet.author.username}</p>
-              <p className='mx-1 text-gray-400'>·</p>
-              <p className='text-gray-400'>{dayjs(tweet.created_at).fromNow()}</p>
+              <p className='mx-1 text-gray-400 text-xs'>·</p>
+              <p className='text-gray-400 text-xs'>{dayjs(tweet.created_at).fromNow()}</p>
             </div>
             <div className=''>
               {tweet.title}
