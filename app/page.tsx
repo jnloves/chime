@@ -10,6 +10,7 @@ export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   const { data: { session }} = await supabase.auth.getSession()
+  //console.log(session?.user.id)
 
   if ( !session ) {
     redirect('/login')
@@ -28,7 +29,7 @@ export default async function Home() {
     <div className='w-full px-4 max-w-[35rem] flex flex-col items-center'>
       <AuthButtonServer />
       <div className='h-16'></div>
-      <NewTweet />
+      <NewTweet userID={session.user.id} />
       <Tweets tweets={tweets} />
 
     </div>
