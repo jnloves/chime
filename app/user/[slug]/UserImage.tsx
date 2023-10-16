@@ -45,7 +45,7 @@ const UserImage = ({ user } : UserProps) => {
 
   return (
     <div 
-        className='w-24 h-24 rounded-full absolute -bottom-12 left-4 bg-center bg-cover border-4 border-slate-700'
+        className='w-24 h-24 rounded-full absolute -bottom-12 left-4 bg-center bg-cover border-4 border-white'
         style={{ backgroundImage: `url(${avatarImage})`}}
     >
     </div>
