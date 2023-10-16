@@ -2,6 +2,7 @@ import UserImage from "./UserImage"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
 import UserTweets from "./UserTweets"
+import Link from "next/link"
 
 
 export default async function Page({
@@ -38,20 +39,18 @@ export default async function Page({
         //console.log(tweets)
     }
 
-
-
-
     return (
-        <div className="w-screen flex flex-col items-center">
+        <div className="w-screen flex flex-col items-center relative">
+            <Link href="/" className="absolute top-4 left-4 z-[1000]">Home</Link>
             <div className="w-full max-w-[40rem] flex flex-col relative">
                 <div className="w-full h-40 bg-slate-400 relative">
                     <UserImage user={params.slug} />
                 </div>
                 <div className="pt-12 flex flex-col">
                     <h1>{profile![0].name}</h1>
-                    <h2>{params.slug}</h2>
+                    <h2>@{params.slug}</h2>
                 </div>
-                <UserTweets userTweets={tweets} />
+                <UserTweets userTweets={tweets} name={profile![0].name} username={params.slug} />
 
             </div>
 
