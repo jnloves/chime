@@ -50,7 +50,7 @@ export default async function Page({
                     <h1>{profile![0].name}</h1>
                     <h2>@{params.slug}</h2>
                 </div>
-                <UserTweets userTweets={tweets} name={profile![0].name} username={params.slug} />
+                <UserTweets userTweets={tweets} name={profile![0].name} username={params.slug} avatarUrl={profile![0].avatar_url} />
 
             </div>
 
