@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Database } from '@/database.types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
+import Loader from '../Loader'
 type profiles = Database['public']['Tables']['profiles']['Row']
 
 export default function Avatar({
@@ -90,10 +91,16 @@ export default function Avatar({
 
   console.log(avatarUrl)
 
+  if (!avatarUrl) return (
+    <div className='w-60 h-60 bg-transparent rounded-full flex items-center justify-center flex-shrink-0'>
+      <Loader />
+    </div>
+  )
+
   return (
     <div 
       className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative flex-shrink-0'
-      style={{backgroundImage: `url(${!!avatarUrl ? avatarUrl : "https://picsum.photos/1000"})`}}
+      style={{backgroundImage: `url(${avatarUrl})`}}
     >
       {/*avatarUrl ? (
         <Image

@@ -83,12 +83,12 @@ const Tweets =  ({ tweets } : { tweets: TweetWithAuthor[]}) => {
           </div>
 
           <div className='w-full flex flex-col gap-2 text-sm'>
-            <div className='flex items-center'>
-              <Link href={`/user/${tweet.author.username}`} className='font-semibold mr-2 hover:underline'>{tweet.author.name}</Link> 
-              <p className='text-gray-400 text-xs'>@{tweet.author.username}</p>
+            <Link href={`/user/${tweet.author.username}`} className='flex items-center group'>
+              <p className='font-semibold mr-2 group-hover:underline '>{tweet.author.name}</p> 
+              <p className='text-gray-400 text-xs group-hover:underline'>@{tweet.author.username}</p>
               <p className='mx-1 text-gray-400 text-xs'>·</p>
               <p className='text-gray-400 text-xs'>{dayjs(tweet.created_at).fromNow()}</p>
-            </div>
+            </Link>
             <div className=''>
               {tweet.title}
             </div>

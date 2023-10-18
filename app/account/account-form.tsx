@@ -123,7 +123,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
             onClick={() => updateProfile({ name, username, avatar_url })}
             disabled={loading}
           >
-            {loading ? 'Loading ...' : 'Update Profile'}
+            {loading ? 'Loading ...' : 'Save Information'}
           </button>
           <form action="/auth/signout" method="post" className='absolute bottom-0 right-0'>
             <button className="button block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl" type="submit">

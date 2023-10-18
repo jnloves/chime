@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import { FaGithub } from "react-icons/fa";
 import { BsArrowRightCircle, BsArrowRight, BsArrowDownCircle } from "react-icons/bs"
 import Image from 'next/image';
+import { CgProfile } from "react-icons/cg";
 
 
 const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
@@ -113,7 +114,7 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
   ) : (
         <div className='w-[100vw] h-16 border-b border-[rgba(1,1,1,0.1)] flex justify-center items-center px-4 fixed top-0 left-0 bg-transparent backdrop-blur-md'>
             <div className='w-full max-w-[55rem] flex justify-end'>
-                <Link href="/account" className=''>Profile</Link>
+                <Link href="/account" className=''><CgProfile size={44} color="black" /></Link>
             </div>
         </div>
   )
