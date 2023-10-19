@@ -4,6 +4,7 @@ import { cookies } from "next/headers"
 import UserTweets from "./UserTweets"
 import Link from "next/link"
 import { FaArrowLeft }  from "react-icons/fa";
+import UserCover from "./UserCover"
 
 
 export default async function Page({
@@ -44,9 +45,7 @@ export default async function Page({
         <div className="w-screen flex flex-col items-center relative">
             <Link href="/" className="absolute top-4 left-4 z-[1000]"><FaArrowLeft size={32} color="black" /></Link>
             <div className="w-full max-w-[40rem] flex flex-col relative">
-                <div className="w-full h-40 bg-slate-400 relative">
-                    <UserImage user={params.slug} />
-                </div>
+                <UserCover user={params.slug} />
                 <div className="pt-12 pb-12 pl-8 flex flex-col">
                     <h1 className="font-semibold text-2xl">{profile![0].name}</h1>
                     <h2 className="font-light text-neutral-500 text-sm">@{params.slug}</h2>

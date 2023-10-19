@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Database } from '@/database.types'
 import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Avatar from './avatar'
+import CoverImage from './CoverImage'
 
 export default function AccountForm({ session }: { session: Session | null  }) {
   const supabase = createClientComponentClient<Database>()
@@ -81,7 +82,8 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full h-[85vh] p-8 items-center max-w-[40rem]">
+    <div className="flex flex-col w-full h-[85vh] p-8 items-center max-w-[40rem] relative">
+      <CoverImage userID={user.id} />
       <Avatar
         uid={user.id}
         url={avatar_url}
@@ -91,7 +93,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
         updateProfile({ name, username, avatar_url: url })
         }}
       />
-      <div className='w-full flex flex-col gap-2 text-sm h-full'>
+      <div className='w-full flex flex-col gap-2 text-sm h-full mt-16'>
         <div className='flex justify-between'>
           <label htmlFor="email">Email</label>
           <input id="email" type="text" className='brightness-50 opacity-50 w-1/2' value={session?.user.email} disabled />

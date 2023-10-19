@@ -4,7 +4,7 @@ import React from 'react'
 
 interface TweetProps {
     content: any; 
-    name: string; 
+    name: string | null; 
     username: string;
     avatarUrl: string;
 }
@@ -32,7 +32,7 @@ const Tweet = ( { content, name, username, avatarUrl } : TweetProps) => {
 
 interface UserTweetsProps {
     userTweets: any;
-    name: string;
+    name: string | null;
     username: string;
     avatarUrl: string;
 }

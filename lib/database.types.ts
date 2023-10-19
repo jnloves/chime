@@ -46,21 +46,24 @@ export interface Database {
       profiles: {
         Row: {
           avatar_url: string
+          cover_url: string
           id: string
-          name: string
-          username: string
+          name: string | null
+          username: string | null
         }
         Insert: {
-          avatar_url: string
+          avatar_url?: string
+          cover_url?: string
           id: string
-          name: string
-          username: string
+          name?: string | null
+          username?: string | null
         }
         Update: {
           avatar_url?: string
+          cover_url?: string
           id?: string
-          name?: string
-          username?: string
+          name?: string | null
+          username?: string | null
         }
         Relationships: [
           {

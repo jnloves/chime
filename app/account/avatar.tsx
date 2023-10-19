@@ -99,7 +99,7 @@ export default function Avatar({
 
   return (
     <div 
-      className='flex items-center w-60 h-60 bg-center bg-cover rounded-full overflow-hidden relative flex-shrink-0'
+      className='flex items-center w-40 h-40 bg-center bg-cover rounded-full overflow-hidden absolute flex-shrink-0 top-[9rem] left-4 md:left-12'
       style={{backgroundImage: `url(${avatarUrl})`}}
     >
       {/*avatarUrl ? (
@@ -120,7 +120,7 @@ export default function Avatar({
           className="avatar image rounded-full"
           style={{ height: size, width: size }}
       />      )*/}
-      <div className='text-center !w-full text-white font-semibold h-1/4 bg-[rgba(1,1,1,0.5)] py-2 absolute -bottom-2'>
+      <div className='text-center !w-full text-white font-semibold h-1/2 bg-[rgba(1,1,1,0.5)] pt-2 absolute -bottom-8'>
         <label className="button primary block cursor-pointer" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Edit Image'}
         </label>

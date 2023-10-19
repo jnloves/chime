@@ -45,19 +45,22 @@ export interface Database {
       }
       profiles: {
         Row: {
-          avatar_url: string | null
+          avatar_url: string
+          cover_url: string
           id: string
           name: string | null
           username: string | null
         }
         Insert: {
-          avatar_url: string | null
+          avatar_url?: string
+          cover_url?: string
           id: string
-          name: string | null
-          username: string | null
+          name?: string | null
+          username?: string | null
         }
         Update: {
-          avatar_url?: string | null
+          avatar_url?: string
+          cover_url?: string
           id?: string
           name?: string | null
           username?: string | null
