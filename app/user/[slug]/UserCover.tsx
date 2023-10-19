@@ -28,7 +28,7 @@ const UserCover = ({ user } : { user: string}) => {
             } 
         }
         getCoverImage();
-    })
+    }, [supabase, user])
 
     if (!coverURL) return (
         <div className="w-full h-40 bg-cover bg-center relative flex items-center justify-center">

@@ -40,7 +40,7 @@ const UserImage = ({ user } : UserProps) => {
         }
         getProfile();
 
-    }, [])
+    }, [supabase, user])
 
 
   return (
