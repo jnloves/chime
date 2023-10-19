@@ -11,7 +11,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
   const [name, setName] = useState<string | null>(null)
   const [username, setUsername] = useState<string | null>(null)
   //const [website, setWebsite] = useState<string | null>(null)
-  const [avatar_url, setAvatarUrl] = useState<string | null>(null)
+  const [avatar_url, setAvatarUrl] = useState<string>("")
   const user = session?.user! 
 
   //if (!user) return;
@@ -57,10 +57,11 @@ export default function AccountForm({ session }: { session: Session | null  }) {
     username,
     //website,
     avatar_url,
+    name,
   }: {
     username: string | null
     name: string | null
-    avatar_url: string | null
+    avatar_url: string 
   }) {
     try {
       setLoading(true)
@@ -70,7 +71,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
         name,
         username,
         avatar_url,
-        //updated_at: new Date().toISOString(),
+        //cover_url,
       })
       if (error) throw error
       alert('Profile updated!')
