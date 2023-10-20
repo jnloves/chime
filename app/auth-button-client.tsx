@@ -18,6 +18,7 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
     const [ vis, setVis ] = useState(false);
     const [ vis1, setVis1 ] = useState(false);
     const [ incorrectLogin, setIncorrectLogin ] = useState(false);
+    const [ incorrectPwLen , setIncorrectPwLen ] = useState(false);
 
 
     const handleSignUp = async (formdata : FormData) => {
@@ -29,9 +30,15 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
         const { data, error } = await supabase.auth.signUp({
             email: formEmail,
             password: formPassword,
+            options: {
+                
+            }
         })
 
-        if (error) {
+        if (formPassword.length < 6) {
+            setIncorrectPwLen(true);
+        } else if (error) {
+            console.log(error)
             throw error;
         } else {
             redirect("/account");
@@ -83,12 +90,13 @@ const AuthButtonClient = ({ session } : { session: Session | null  ;}) => {
 
         <div className='flex flex-col gap-8'>
 
-            <div className={`w-full max-w-[20rem] md:max-w-[30rem] border border-[rgba(1,1,1,0.1)] rounded-xl overflow-hidden relative transition-all duration-300 flex justify-center ${vis ? "h-60" : "h-12"}`}>
+            <div className={`w-full max-w-[20rem] md:max-w-[30rem] border  rounded-xl overflow-hidden relative transition-all duration-300 flex justify-center ${vis ? "h-60" : "!h-12"} ${incorrectPwLen ? "border-red-400 h-72" : "border-[rgba(1,1,1,0.1)]"}`}>
                 <div className='absolute left-0 top-0 w-full h-12  bg-[rgba(1,1,1,0.1)] flex items-center justify-center cursor-pointer gap-4' onClick={()  => setVis(!vis)}>Sign Up <span className={`transition-all duration-300 ${vis ? "-rotate-180" : "rotate-0"}`}><BsArrowDownCircle size={24} color="black" /></span></div>
-                <form action={handleSignUp} className='flex flex-col gap-4 relative top-16'>
+                <form action={handleSignUp} className={`flex flex-col gap-4 relative top-16`}>
                     <input name='email' type='email' className='border-b border-black' placeholder='email' required />
                     <input name='password' type='text' className='border-b border-black' placeholder='password' required />
-                    <button className='rounded-xl w-[15rem] bg-[rgba(1,1,1,0.1)] justify-around items-center py-2 flex'>Sign up with Email <BsArrowRight size={32} color="black" /></button>
+                    <div className={`text-red-400 text-sm text-center ${incorrectPwLen ? "block" : "hidden"}`}>Please make sure your password is at least 6 characters</div>
+                    <button className='rounded-xl w-[15rem] bg-[rgba(1,1,1,0.1)] mx-auto justify-around items-center py-2 flex'>Sign up with Email <BsArrowRight size={32} color="black" /></button>
                 </form>
             </div>
 

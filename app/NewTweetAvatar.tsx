@@ -25,31 +25,34 @@ const NewTweetAvatar = ({ userID } : NTAProps) => {
 
             //const url = URL.createObjectURL(profiles![0].avatar_url)
             const path = profiles![0].avatar_url;
+            console.log(path);
+            if (!path) {
+              let { data } = supabase.storage.from("avatars").getPublicUrl("coon");
+              setAvatarURL(data.publicUrl);
+            } else {
+              let { data } = supabase.storage.from("avatars").getPublicUrl(path);
+              setAvatarURL(data.publicUrl);
+            }
 
             //setAvatarURL(profiles![0].avatar_url)
             //console.log(profiles![0].avatar_url)
-    
+          /*
           try {
-            const { data, error } = await supabase.storage.from('avatars').download(path)
+            let { data, error } = await supabase.storage.from('avatars').download(path)
+            let url;
             if (error) {
                 //setAvatarURL(profiles![0].avatar_url)
                 console.log('hi')
-    
-              throw error
-            }
-    
-            const url = URL.createObjectURL(data)
-            if (url) {
-                //console.log(!!url)
-                //console.log(url)
-                setAvatarURL(url);
+                let { data } = supabase.storage.from("avatars").getPublicUrl("coon");
+                setAvatarURL(data.publicUrl);
             } else {
-                //setAvatarUrl(user?.user_metadata.avatar_url)
+              url = URL.createObjectURL(data!)
+              setAvatarURL(url)
             }
-            //setAvatarUrl(url)
+
           } catch (error) {
             console.log('Error downloading image: ', error)
-          }
+          }*/
         }
         
         setTimeout(() => {
