@@ -121,6 +121,7 @@ export default function AccountForm({ session }: { session: Session | null  }) {
         </div>
 
         <div className='flex flex-col h-3/4 relative'>
+          <p className='text-xs text-neutral-500'>***Press save info after updating name/username above!</p>
           <button
             className="button primary block border border-[rgba(1,1,1,0.2)] px-4 py-2 rounded-xl w-fit self-end"
             onClick={() => updateProfile({ name, username, avatar_url })}
